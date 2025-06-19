@@ -7,6 +7,7 @@ import { TemperatureMonitor } from './TemperatureMonitor';
 import { NEIMonitor } from './NEIMonitor';
 import { ActionPanel } from './ActionPanel';
 import { TransformerDetails } from './TransformerDetails';
+import { SidebarTrigger } from '@/components/ui/sidebar';
 import { AlertTriangle } from 'lucide-react';
 
 const TransformerDashboard = () => {
@@ -15,9 +16,12 @@ const TransformerDashboard = () => {
       <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold text-slate-800">Transformer Monitoring</h1>
-            <p className="text-slate-600 mt-1">Real-time power transformer health analytics</p>
+          <div className="flex items-center gap-4">
+            <SidebarTrigger />
+            <div>
+              <h1 className="text-3xl font-bold text-slate-800">Transformer Monitoring</h1>
+              <p className="text-slate-600 mt-1">Real-time power transformer health analytics</p>
+            </div>
           </div>
           <div className="flex items-center gap-2 bg-green-50 px-4 py-2 rounded-lg border border-green-200">
             <AlertTriangle className="h-5 w-5 text-green-600" />
