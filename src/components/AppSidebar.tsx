@@ -49,14 +49,14 @@ export function AppSidebar() {
             <Zap className="h-5 w-5 text-white" />
           </div>
           <div>
-            <h2 className="text-lg font-bold text-slate-800">RMES</h2>
-            <p className="text-xs text-slate-600">Rugged Monitoring</p>
+            <h2 className="text-lg font-bold text-slate-800">Advanced Assets Monitoring</h2>
+            <p className="text-xs text-slate-600">Powered by AI</p>
           </div>
         </div>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Asset Monitoring</SidebarGroupLabel>
+          <SidebarGroupLabel>List of Assets</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {menuItems.map((item) => (
