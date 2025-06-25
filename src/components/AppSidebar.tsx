@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
@@ -27,14 +26,46 @@ import {
   Lightbulb,
   Battery,
   Cog,
-  Power
+  Power,
+  Radio
 } from 'lucide-react';
 
 const menuItems = [
   {
-    title: 'Power Transformer',
+    title: 'Power Generation & Transmission Equipment',
     path: '/',
+    icon: Radio,
+    subItems: [
+      { title: 'HV Generators', path: '/power-generation-transmission/hv-generators' },
+      { title: 'HV Circuit Breakers', path: '/power-generation-transmission/hv-circuit-breakers' },
+      { title: 'Disconnectors (Isolators)', path: '/power-generation-transmission/disconnectors' },
+      { title: 'Earthing Switches', path: '/power-generation-transmission/earthing-switches' },
+      { title: 'Current Transformers (CTs)', path: '/power-generation-transmission/current-transformers' },
+      { title: 'Voltage Transformers (VTs) & Capacitive Voltage Transformers (CVTs)', path: '/power-generation-transmission/voltage-transformers' },
+      { title: 'Surge Arresters (Lightning Arresters)', path: '/power-generation-transmission/surge-arresters' },
+      { title: 'HV Insulators', path: '/power-generation-transmission/hv-insulators' },
+      { title: 'HV Bushings', path: '/power-generation-transmission/hv-bushings' },
+      { title: 'HV Power Cables', path: '/power-generation-transmission/hv-power-cables' },
+      { title: 'Overhead Transmission Lines & Towers', path: '/power-generation-transmission/overhead-transmission-lines' },
+      { title: 'Gas-Insulated Switchgear (GIS)', path: '/power-generation-transmission/gas-insulated-switchgear' },
+      { title: 'Hybrid Gas-Insulated Switchgear (HGIS)', path: '/power-generation-transmission/hybrid-gas-insulated-switchgear' },
+    ],
+  },
+  {
+    title: 'Substation Equipment',
+    path: '/substation-equipment',
     icon: Zap,
+    subItems: [
+      { title: 'Power Transformers', path: '/substation-equipment/power-transformers' },
+      { title: 'Autotransformers', path: '/substation-equipment/autotransformers' },
+      { title: 'Reactors (Shunt & Series)', path: '/substation-equipment/reactors' },
+      { title: 'HV Capacitor Banks', path: '/substation-equipment/hv-capacitor-banks' },
+      { title: 'Static VAR Compensators (SVCs)', path: '/substation-equipment/static-var-compensators' },
+      { title: 'Flexible AC Transmission Systems (FACTS) Devices', path: '/substation-equipment/facts-devices' },
+      { title: 'HV Relays & Protection Systems', path: '/substation-equipment/hv-relays-protection' },
+      { title: 'Synchronizing Panels', path: '/substation-equipment/synchronizing-panels' },
+      { title: 'HV Busbars & Bus Ducts', path: '/substation-equipment/hv-busbars-bus-ducts' },
+    ],
   },
   {
     title: 'Power Distribution & Protection Equipment',
