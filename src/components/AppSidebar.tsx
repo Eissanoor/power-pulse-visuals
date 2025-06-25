@@ -148,26 +148,30 @@ export function AppSidebar() {
   const isExpanded = (title: string) => expandedItems.includes(title);
 
   return (
-    <Sidebar>
-      <SidebarHeader className="p-6 border-b border-sidebar-border">
+    <Sidebar className="w-80">
+      <SidebarHeader className="p-6 border-b border-sidebar-border bg-gradient-to-r from-slate-50 to-blue-50">
         <div className="flex items-center gap-3">
-          <div className="h-10 w-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center shadow-lg">
-            <Zap className="h-6 w-6 text-white" />
+          <div className="h-12 w-12 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-700 rounded-xl flex items-center justify-center shadow-lg ring-2 ring-blue-100">
+            <Zap className="h-7 w-7 text-white" />
           </div>
-          <div className="flex-1">
-            <h2 className="text-xl font-bold text-slate-800 leading-tight">Advanced Assets Monitoring</h2>
-            <p className="text-sm text-slate-500 mt-0.5">Powered by AI</p>
+          <div className="flex-1 min-w-0">
+            <h2 className="text-xl font-bold text-slate-800 leading-tight">
+              Advanced Assets Monitoring
+            </h2>
+            <p className="text-sm text-slate-500 mt-1 font-medium">
+              Powered by AI Intelligence
+            </p>
           </div>
         </div>
       </SidebarHeader>
       
-      <SidebarContent className="py-4">
+      <SidebarContent className="py-6 bg-gradient-to-b from-white to-slate-50">
         <SidebarGroup>
-          <SidebarGroupLabel className="px-6 py-3 text-sm font-semibold text-slate-600 uppercase tracking-wide">
-            List of Assets
+          <SidebarGroupLabel className="px-6 py-4 text-sm font-bold text-slate-700 uppercase tracking-wider border-b border-slate-200 mb-4 bg-slate-50/50">
+            Asset Categories
           </SidebarGroupLabel>
-          <SidebarGroupContent className="px-3">
-            <SidebarMenu className="space-y-1">
+          <SidebarGroupContent className="px-4">
+            <SidebarMenu className="space-y-2">
               {menuItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   {item.subItems ? (
@@ -178,26 +182,30 @@ export function AppSidebar() {
                           navigate(item.path);
                         }}
                         isActive={location.pathname === item.path || location.pathname.startsWith(item.path + '/')}
-                        className="w-full h-12 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-sidebar-accent/80"
+                        className="w-full min-h-[3.5rem] px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:shadow-md border border-transparent hover:border-blue-200/50 group"
                       >
-                        <item.icon className="h-5 w-5 flex-shrink-0" />
-                        <span className="flex-1 text-left truncate">{item.title}</span>
+                        <item.icon className="h-5 w-5 flex-shrink-0 text-slate-600 group-hover:text-blue-600 transition-colors duration-200" />
+                        <span className="flex-1 text-left text-slate-700 group-hover:text-slate-900 font-medium leading-tight break-words pr-2">
+                          {item.title}
+                        </span>
                         {isExpanded(item.title) ? (
-                          <ChevronDown className="h-4 w-4 flex-shrink-0 transition-transform duration-200" />
+                          <ChevronDown className="h-4 w-4 flex-shrink-0 transition-all duration-300 text-slate-500 group-hover:text-blue-600" />
                         ) : (
-                          <ChevronRight className="h-4 w-4 flex-shrink-0 transition-transform duration-200" />
+                          <ChevronRight className="h-4 w-4 flex-shrink-0 transition-all duration-300 text-slate-500 group-hover:text-blue-600" />
                         )}
                       </SidebarMenuButton>
                       {isExpanded(item.title) && (
-                        <SidebarMenuSub className="mt-2 ml-4 space-y-1">
+                        <SidebarMenuSub className="mt-3 ml-6 space-y-1 border-l-2 border-blue-100 pl-4 animate-in slide-in-from-top-2 duration-300">
                           {item.subItems.map((subItem) => (
                             <SidebarMenuSubItem key={subItem.title}>
                               <SidebarMenuSubButton
                                 onClick={() => navigate(subItem.path)}
                                 isActive={location.pathname === subItem.path}
-                                className="h-10 px-4 py-2 rounded-md text-sm transition-all duration-200 hover:bg-sidebar-accent/60"
+                                className="min-h-[2.5rem] px-3 py-2 rounded-lg text-sm transition-all duration-200 hover:bg-blue-50 hover:shadow-sm border border-transparent hover:border-blue-100 w-full text-left"
                               >
-                                <span className="truncate">{subItem.title}</span>
+                                <span className="text-slate-600 hover:text-slate-900 leading-tight break-words font-medium">
+                                  {subItem.title}
+                                </span>
                               </SidebarMenuSubButton>
                             </SidebarMenuSubItem>
                           ))}
@@ -208,10 +216,12 @@ export function AppSidebar() {
                     <SidebarMenuButton
                       onClick={() => navigate(item.path)}
                       isActive={location.pathname === item.path}
-                      className="w-full h-12 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-sidebar-accent/80"
+                      className="w-full min-h-[3.5rem] px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:shadow-md border border-transparent hover:border-blue-200/50 group"
                     >
-                      <item.icon className="h-5 w-5 flex-shrink-0" />
-                      <span className="flex-1 text-left truncate">{item.title}</span>
+                      <item.icon className="h-5 w-5 flex-shrink-0 text-slate-600 group-hover:text-blue-600 transition-colors duration-200" />
+                      <span className="flex-1 text-left text-slate-700 group-hover:text-slate-900 font-medium leading-tight break-words">
+                        {item.title}
+                      </span>
                     </SidebarMenuButton>
                   )}
                 </SidebarMenuItem>
