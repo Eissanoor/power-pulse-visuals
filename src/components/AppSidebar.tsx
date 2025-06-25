@@ -15,7 +15,20 @@ import {
   SidebarMenuSubItem,
   SidebarMenuSubButton,
 } from '@/components/ui/sidebar';
-import { Zap, Activity, Cable, Settings, ChevronDown, ChevronRight } from 'lucide-react';
+import { 
+  Zap, 
+  Activity, 
+  Cable, 
+  Settings, 
+  ChevronDown, 
+  ChevronRight,
+  Wrench,
+  Shield,
+  Lightbulb,
+  Battery,
+  Meter,
+  Power
+} from 'lucide-react';
 
 const menuItems = [
   {
@@ -39,14 +52,83 @@ const menuItems = [
     ],
   },
   {
+    title: 'Wiring & Connection Components',
+    path: '/wiring-connection',
+    icon: Cable,
+    subItems: [
+      { title: 'LV Cables', path: '/wiring-connection/lv-cables' },
+      { title: 'Cable Trays & Conduits', path: '/wiring-connection/cable-trays-conduits' },
+      { title: 'Terminal Blocks & Connectors', path: '/wiring-connection/terminal-blocks-connectors' },
+      { title: 'Plug & Socket Outlets', path: '/wiring-connection/plug-socket-outlets' },
+      { title: 'Junction Boxes & Distribution Boxes', path: '/wiring-connection/junction-distribution-boxes' },
+    ],
+  },
+  {
+    title: 'Control & Automation Equipment',
+    path: '/control-automation',
+    icon: Wrench,
+    subItems: [
+      { title: 'Contactors & Relays', path: '/control-automation/contactors-relays' },
+      { title: 'Motor Starters', path: '/control-automation/motor-starters' },
+      { title: 'Programmable Logic Controllers (PLCs)', path: '/control-automation/plcs' },
+      { title: 'Human-Machine Interfaces (HMIs)', path: '/control-automation/hmis' },
+      { title: 'Sensors & Actuators', path: '/control-automation/sensors-actuators' },
+      { title: 'LV Control Panels', path: '/control-automation/lv-control-panels' },
+    ],
+  },
+  {
+    title: 'LV Motors & Drives',
+    path: '/motors-drives',
+    icon: Activity,
+    subItems: [
+      { title: 'LV Induction Motors', path: '/motors-drives/lv-induction-motors' },
+      { title: 'LV Servo & Stepper Motors', path: '/motors-drives/lv-servo-stepper-motors' },
+      { title: 'LV Variable Frequency Drives (VFDs)', path: '/motors-drives/lv-vfds' },
+      { title: 'Gear Motors & Brake Motors', path: '/motors-drives/gear-brake-motors' },
+    ],
+  },
+  {
+    title: 'Lighting & Auxiliary Systems',
+    path: '/lighting-auxiliary',
+    icon: Lightbulb,
+    subItems: [
+      { title: 'LED & Fluorescent Lighting Fixtures', path: '/lighting-auxiliary/led-fluorescent-fixtures' },
+      { title: 'Emergency Lighting & Exit Signs', path: '/lighting-auxiliary/emergency-lighting-exit-signs' },
+      { title: 'Battery Backup Systems (UPS)', path: '/lighting-auxiliary/battery-backup-ups' },
+      { title: 'LV Inverters & Solar PV Systems', path: '/lighting-auxiliary/lv-inverters-solar-pv' },
+    ],
+  },
+  {
+    title: 'Safety & Testing Equipment',
+    path: '/safety-testing',
+    icon: Shield,
+    subItems: [
+      { title: 'Earth Leakage Detectors', path: '/safety-testing/earth-leakage-detectors' },
+      { title: 'Insulation Testers (Meggers)', path: '/safety-testing/insulation-testers-meggers' },
+      { title: 'Multimeters & Clamp Meters', path: '/safety-testing/multimeters-clamp-meters' },
+      { title: 'Portable Residual Current Devices (PRCDs)', path: '/safety-testing/portable-rcd-devices' },
+    ],
+  },
+  {
+    title: 'Renewable & Residential LV Assets',
+    path: '/renewable-residential',
+    icon: Battery,
+    subItems: [
+      { title: 'Solar Inverters (String & Microinverters)', path: '/renewable-residential/solar-inverters' },
+      { title: 'LV Distribution Boards (DBs) for Homes/Offices', path: '/renewable-residential/lv-distribution-boards' },
+      { title: 'Smart Meters & Energy Monitors', path: '/renewable-residential/smart-meters-energy-monitors' },
+      { title: 'EV Charging Stations (AC Type – 230V/400V)', path: '/renewable-residential/ev-charging-stations' },
+    ],
+  },
+  {
     title: 'Power Cable',
     path: '/power-cable',
-    icon: Cable,
+    icon: Power,
   },
   {
     title: 'Rotating Machine',
     path: '/rotating-machine',
-    icon: Activity,
+    icon: Meter,
   },
 ];
 
