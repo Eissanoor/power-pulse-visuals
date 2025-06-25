@@ -68,6 +68,40 @@ const menuItems = [
     ],
   },
   {
+    title: 'Industrial & Specialized HV Equipment',
+    path: '/industrial-specialized-hv',
+    icon: Activity,
+    subItems: [
+      { title: 'HV Motors', path: '/industrial-specialized-hv/hv-motors' },
+      { title: 'HV Variable Frequency Drives (VFDs)', path: '/industrial-specialized-hv/hv-vfds' },
+      { title: 'HV Switchgear Panels', path: '/industrial-specialized-hv/hv-switchgear-panels' },
+      { title: 'Ring Main Units (RMUs)', path: '/industrial-specialized-hv/ring-main-units' },
+      { title: 'HV Fuses (Expulsion, Current-limiting)', path: '/industrial-specialized-hv/hv-fuses' },
+      { title: 'HV Test Equipment', path: '/industrial-specialized-hv/hv-test-equipment' },
+      { title: 'HV DC Equipment', path: '/industrial-specialized-hv/hv-dc-equipment' },
+    ],
+  },
+  {
+    title: 'Renewable Energy HV Assets',
+    path: '/renewable-energy-hv',
+    icon: Battery,
+    subItems: [
+      { title: 'HV Wind Turbine Transformers', path: '/renewable-energy-hv/wind-turbine-transformers' },
+      { title: 'Solar Farm Step-up Transformers', path: '/renewable-energy-hv/solar-farm-transformers' },
+      { title: 'HV Grid-Tie Inverters', path: '/renewable-energy-hv/hv-grid-tie-inverters' },
+    ],
+  },
+  {
+    title: 'Railway & Traction HV Systems',
+    path: '/railway-traction-hv',
+    icon: Cable,
+    subItems: [
+      { title: 'Overhead Catenary Systems (OCS)', path: '/railway-traction-hv/overhead-catenary-systems' },
+      { title: 'Traction Substations', path: '/railway-traction-hv/traction-substations' },
+      { title: 'Railway Autotransformers', path: '/railway-traction-hv/railway-autotransformers' },
+    ],
+  },
+  {
     title: 'Power Distribution & Protection Equipment',
     path: '/switchgear',
     icon: Settings,
