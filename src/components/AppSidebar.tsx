@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
@@ -148,22 +149,25 @@ export function AppSidebar() {
 
   return (
     <Sidebar>
-      <SidebarHeader className="p-4">
-        <div className="flex items-center gap-2">
-          <div className="h-8 w-8 bg-blue-600 rounded-lg flex items-center justify-center">
-            <Zap className="h-5 w-5 text-white" />
+      <SidebarHeader className="p-6 border-b border-sidebar-border">
+        <div className="flex items-center gap-3">
+          <div className="h-10 w-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center shadow-lg">
+            <Zap className="h-6 w-6 text-white" />
           </div>
-          <div>
-            <h2 className="text-lg font-bold text-slate-800">Advanced Assets Monitoring</h2>
-            <p className="text-xs text-slate-600">Powered by AI</p>
+          <div className="flex-1">
+            <h2 className="text-xl font-bold text-slate-800 leading-tight">Advanced Assets Monitoring</h2>
+            <p className="text-sm text-slate-500 mt-0.5">Powered by AI</p>
           </div>
         </div>
       </SidebarHeader>
-      <SidebarContent>
+      
+      <SidebarContent className="py-4">
         <SidebarGroup>
-          <SidebarGroupLabel>List of Assets</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
+          <SidebarGroupLabel className="px-6 py-3 text-sm font-semibold text-slate-600 uppercase tracking-wide">
+            List of Assets
+          </SidebarGroupLabel>
+          <SidebarGroupContent className="px-3">
+            <SidebarMenu className="space-y-1">
               {menuItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   {item.subItems ? (
@@ -174,25 +178,26 @@ export function AppSidebar() {
                           navigate(item.path);
                         }}
                         isActive={location.pathname === item.path || location.pathname.startsWith(item.path + '/')}
-                        className="w-full"
+                        className="w-full h-12 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-sidebar-accent/80"
                       >
-                        <item.icon className="h-4 w-4" />
-                        <span>{item.title}</span>
+                        <item.icon className="h-5 w-5 flex-shrink-0" />
+                        <span className="flex-1 text-left truncate">{item.title}</span>
                         {isExpanded(item.title) ? (
-                          <ChevronDown className="ml-auto h-4 w-4" />
+                          <ChevronDown className="h-4 w-4 flex-shrink-0 transition-transform duration-200" />
                         ) : (
-                          <ChevronRight className="ml-auto h-4 w-4" />
+                          <ChevronRight className="h-4 w-4 flex-shrink-0 transition-transform duration-200" />
                         )}
                       </SidebarMenuButton>
                       {isExpanded(item.title) && (
-                        <SidebarMenuSub>
+                        <SidebarMenuSub className="mt-2 ml-4 space-y-1">
                           {item.subItems.map((subItem) => (
                             <SidebarMenuSubItem key={subItem.title}>
                               <SidebarMenuSubButton
                                 onClick={() => navigate(subItem.path)}
                                 isActive={location.pathname === subItem.path}
+                                className="h-10 px-4 py-2 rounded-md text-sm transition-all duration-200 hover:bg-sidebar-accent/60"
                               >
-                                <span>{subItem.title}</span>
+                                <span className="truncate">{subItem.title}</span>
                               </SidebarMenuSubButton>
                             </SidebarMenuSubItem>
                           ))}
@@ -203,10 +208,10 @@ export function AppSidebar() {
                     <SidebarMenuButton
                       onClick={() => navigate(item.path)}
                       isActive={location.pathname === item.path}
-                      className="w-full"
+                      className="w-full h-12 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-sidebar-accent/80"
                     >
-                      <item.icon className="h-4 w-4" />
-                      <span>{item.title}</span>
+                      <item.icon className="h-5 w-5 flex-shrink-0" />
+                      <span className="flex-1 text-left truncate">{item.title}</span>
                     </SidebarMenuButton>
                   )}
                 </SidebarMenuItem>
