@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Sidebar,
@@ -11,8 +11,11 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarMenuSub,
+  SidebarMenuSubItem,
+  SidebarMenuSubButton,
 } from '@/components/ui/sidebar';
-import { Zap, Activity, Cable, Settings } from 'lucide-react';
+import { Zap, Activity, Cable, Settings, ChevronDown, ChevronRight } from 'lucide-react';
 
 const menuItems = [
   {
@@ -21,9 +24,19 @@ const menuItems = [
     icon: Zap,
   },
   {
-    title: 'Switchgear',
+    title: 'Power Distribution & Protection Equipment',
     path: '/switchgear',
     icon: Settings,
+    subItems: [
+      { title: 'LV Circuit Breakers', path: '/switchgear/lv-circuit-breakers' },
+      { title: 'LV Switchgear Panels', path: '/switchgear/lv-switchgear-panels' },
+      { title: 'Isolators & Disconnect Switches', path: '/switchgear/isolators-disconnect-switches' },
+      { title: 'Fuses (LV Type)', path: '/switchgear/fuses-lv-type' },
+      { title: 'Surge Protection Devices (SPDs)', path: '/switchgear/surge-protection-devices' },
+      { title: 'Current Transformers (CTs) for LV', path: '/switchgear/current-transformers-lv' },
+      { title: 'LV Busbars & Bus Ducts', path: '/switchgear/lv-busbars-bus-ducts' },
+      { title: 'Power Factor Correction (PFC) Units', path: '/switchgear/power-factor-correction-units' },
+    ],
   },
   {
     title: 'Power Cable',
@@ -40,6 +53,17 @@ const menuItems = [
 export function AppSidebar() {
   const location = useLocation();
   const navigate = useNavigate();
+  const [expandedItems, setExpandedItems] = useState<string[]>([]);
+
+  const toggleExpanded = (title: string) => {
+    setExpandedItems(prev => 
+      prev.includes(title) 
+        ? prev.filter(item => item !== title)
+        : [...prev, title]
+    );
+  };
+
+  const isExpanded = (title: string) => expandedItems.includes(title);
 
   return (
     <Sidebar>
@@ -61,14 +85,49 @@ export function AppSidebar() {
             <SidebarMenu>
               {menuItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton
-                    onClick={() => navigate(item.path)}
-                    isActive={location.pathname === item.path}
-                    className="w-full"
-                  >
-                    <item.icon className="h-4 w-4" />
-                    <span>{item.title}</span>
-                  </SidebarMenuButton>
+                  {item.subItems ? (
+                    <>
+                      <SidebarMenuButton
+                        onClick={() => {
+                          toggleExpanded(item.title);
+                          navigate(item.path);
+                        }}
+                        isActive={location.pathname === item.path || location.pathname.startsWith(item.path + '/')}
+                        className="w-full"
+                      >
+                        <item.icon className="h-4 w-4" />
+                        <span>{item.title}</span>
+                        {isExpanded(item.title) ? (
+                          <ChevronDown className="ml-auto h-4 w-4" />
+                        ) : (
+                          <ChevronRight className="ml-auto h-4 w-4" />
+                        )}
+                      </SidebarMenuButton>
+                      {isExpanded(item.title) && (
+                        <SidebarMenuSub>
+                          {item.subItems.map((subItem) => (
+                            <SidebarMenuSubItem key={subItem.title}>
+                              <SidebarMenuSubButton
+                                onClick={() => navigate(subItem.path)}
+                                isActive={location.pathname === subItem.path}
+                              >
+                                <span>{subItem.title}</span>
+                              </SidebarMenuSubButton>
+                            </SidebarMenuSubItem>
+                          ))}
+                        </SidebarMenuSub>
+                      )}
+                    </>
+                  ) : (
+                    <SidebarMenuButton
+                      onClick={() => navigate(item.path)}
+                      isActive={location.pathname === item.path}
+                      className="w-full"
+                    >
+                      <item.icon className="h-4 w-4" />
+                      <span>{item.title}</span>
+                    </SidebarMenuButton>
+                  )}
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
