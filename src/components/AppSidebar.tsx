@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
@@ -26,7 +25,7 @@ import {
   Shield,
   Lightbulb,
   Battery,
-  Meter,
+  Cog,
   Power
 } from 'lucide-react';
 
@@ -128,7 +127,7 @@ const menuItems = [
   {
     title: 'Rotating Machine',
     path: '/rotating-machine',
-    icon: Meter,
+    icon: Cog,
   },
 ];
 
