@@ -27,7 +27,9 @@ import {
   Battery,
   Cog,
   Power,
-  Radio
+  Radio,
+  Menu,
+  X
 } from 'lucide-react';
 
 const menuItems = [
@@ -201,6 +203,7 @@ export function AppSidebar() {
   const location = useLocation();
   const navigate = useNavigate();
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
+  const [isOpen, setIsOpen] = useState<boolean>(true);
 
   const toggleExpanded = (title: string) => {
     setExpandedItems(prev => 
@@ -212,88 +215,133 @@ export function AppSidebar() {
 
   const isExpanded = (title: string) => expandedItems.includes(title);
 
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <Sidebar className="w-96">
-      <SidebarHeader className="p-6 border-b border-sidebar-border bg-gradient-to-r from-slate-50 to-blue-50">
-        <div className="flex items-center gap-3">
+    <Sidebar className={`transition-all duration-300 ${isOpen ? "w-96" : "w-24"} border-r border-slate-200`}>
+      <div className="absolute right-0 top-6 transform translate-x-1/2 z-10">
+        <button 
+          onClick={toggleSidebar}
+          className="flex items-center justify-center h-10 w-10 rounded-full bg-white shadow-md border border-slate-200 text-slate-700 hover:bg-blue-50 hover:text-blue-600 transition-all duration-200"
+          aria-label={isOpen ? "Collapse sidebar" : "Expand sidebar"}
+        >
+          {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      </div>
+
+      <SidebarHeader className={`p-6 border-b border-sidebar-border bg-gradient-to-r from-slate-50 to-blue-50 ${isOpen ? "" : "flex justify-center"}`}>
+        <div className={`flex items-center ${isOpen ? "gap-3" : "justify-center"}`}>
           <div className="h-12 w-12 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-700 rounded-xl flex items-center justify-center shadow-lg ring-2 ring-blue-100">
             <Zap className="h-7 w-7 text-white" />
           </div>
-          <div className="flex-1 min-w-0">
-            <h2 className="text-xl font-bold text-slate-800 leading-tight">
-              Advanced Assets Monitoring
-            </h2>
-            <p className="text-sm text-slate-500 mt-1 font-medium">
-              Powered by AI Intelligence
-            </p>
-          </div>
+          {isOpen && (
+            <div className="flex-1 min-w-0">
+              <h2 className="text-xl font-bold text-slate-800 leading-tight">
+                Advanced Assets Monitoring
+              </h2>
+              <p className="text-sm text-slate-500 mt-1 font-medium">
+                Powered by AI Intelligence
+              </p>
+            </div>
+          )}
         </div>
       </SidebarHeader>
       
-      <SidebarContent className="py-6 bg-gradient-to-b from-white to-slate-50">
-        <SidebarGroup>
-          <SidebarGroupLabel className="px-6 py-4 text-sm font-bold text-slate-700 uppercase tracking-wider border-b border-slate-200 mb-4 bg-slate-50/50">
-            Asset Categories
-          </SidebarGroupLabel>
-          <SidebarGroupContent className="px-4">
-            <SidebarMenu className="space-y-2">
-              {menuItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  {item.subItems ? (
-                    <>
+      <SidebarContent className="py-6 bg-gradient-to-b from-white to-slate-50 overflow-y-auto">
+        {isOpen ? (
+          <SidebarGroup>
+            <SidebarGroupLabel className="px-6 py-4 text-sm font-bold text-slate-700 uppercase tracking-wider border-b border-slate-200 mb-4 bg-slate-50/50">
+              Asset Categories
+            </SidebarGroupLabel>
+            <SidebarGroupContent className="px-4">
+              <SidebarMenu className="space-y-2">
+                {menuItems.map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                    {item.subItems ? (
+                      <>
+                        <SidebarMenuButton
+                          onClick={() => {
+                            toggleExpanded(item.title);
+                            navigate(item.path);
+                          }}
+                          isActive={location.pathname === item.path || location.pathname.startsWith(item.path + '/')}
+                          className="w-full min-h-[3.5rem] px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:shadow-md border border-transparent hover:border-blue-200/50 group"
+                        >
+                          <item.icon className="h-5 w-5 flex-shrink-0 text-slate-600 group-hover:text-blue-600 transition-colors duration-200" />
+                          <div className="flex-1 text-left text-slate-700 group-hover:text-slate-900 font-medium leading-tight whitespace-normal pr-2">
+                            {item.title}
+                          </div>
+                          {isExpanded(item.title) ? (
+                            <ChevronDown className="h-4 w-4 flex-shrink-0 transition-all duration-300 text-slate-500 group-hover:text-blue-600" />
+                          ) : (
+                            <ChevronRight className="h-4 w-4 flex-shrink-0 transition-all duration-300 text-slate-500 group-hover:text-blue-600" />
+                          )}
+                        </SidebarMenuButton>
+                        {isExpanded(item.title) && (
+                          <SidebarMenuSub className="mt-3 ml-2 space-y-1 border-l-2 border-blue-100 pl-3 animate-in slide-in-from-top-2 duration-300">
+                            {item.subItems.map((subItem) => (
+                              <SidebarMenuSubItem key={subItem.title}>
+                                <SidebarMenuSubButton
+                                  onClick={() => navigate(subItem.path)}
+                                  isActive={location.pathname === subItem.path}
+                                  className="min-h-[2.5rem] px-3 py-2 rounded-lg text-sm transition-all duration-200 hover:bg-blue-50 hover:shadow-sm border border-transparent hover:border-blue-100 w-full text-left flex items-center"
+                                >
+                                  <div className="flex-1 text-slate-600 hover:text-slate-900 leading-tight font-medium whitespace-normal">
+                                    {subItem.title}
+                                  </div>
+                                </SidebarMenuSubButton>
+                              </SidebarMenuSubItem>
+                            ))}
+                          </SidebarMenuSub>
+                        )}
+                      </>
+                    ) : (
                       <SidebarMenuButton
-                        onClick={() => {
-                          toggleExpanded(item.title);
-                          navigate(item.path);
-                        }}
-                        isActive={location.pathname === item.path || location.pathname.startsWith(item.path + '/')}
+                        onClick={() => navigate(item.path)}
+                        isActive={location.pathname === item.path}
                         className="w-full min-h-[3.5rem] px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:shadow-md border border-transparent hover:border-blue-200/50 group"
                       >
                         <item.icon className="h-5 w-5 flex-shrink-0 text-slate-600 group-hover:text-blue-600 transition-colors duration-200" />
-                        <div className="flex-1 text-left text-slate-700 group-hover:text-slate-900 font-medium leading-tight whitespace-normal pr-2">
+                        <div className="flex-1 text-left text-slate-700 group-hover:text-slate-900 font-medium leading-tight whitespace-normal">
                           {item.title}
                         </div>
-                        {isExpanded(item.title) ? (
-                          <ChevronDown className="h-4 w-4 flex-shrink-0 transition-all duration-300 text-slate-500 group-hover:text-blue-600" />
-                        ) : (
-                          <ChevronRight className="h-4 w-4 flex-shrink-0 transition-all duration-300 text-slate-500 group-hover:text-blue-600" />
-                        )}
                       </SidebarMenuButton>
-                      {isExpanded(item.title) && (
-                        <SidebarMenuSub className="mt-3 ml-2 space-y-1 border-l-2 border-blue-100 pl-3 animate-in slide-in-from-top-2 duration-300">
-                          {item.subItems.map((subItem) => (
-                            <SidebarMenuSubItem key={subItem.title}>
-                              <SidebarMenuSubButton
-                                onClick={() => navigate(subItem.path)}
-                                isActive={location.pathname === subItem.path}
-                                className="min-h-[2.5rem] px-3 py-2 rounded-lg text-sm transition-all duration-200 hover:bg-blue-50 hover:shadow-sm border border-transparent hover:border-blue-100 w-full text-left flex items-center"
-                              >
-                                <div className="flex-1 text-slate-600 hover:text-slate-900 leading-tight font-medium whitespace-normal">
-                                  {subItem.title}
-                                </div>
-                              </SidebarMenuSubButton>
-                            </SidebarMenuSubItem>
-                          ))}
-                        </SidebarMenuSub>
-                      )}
-                    </>
-                  ) : (
-                    <SidebarMenuButton
-                      onClick={() => navigate(item.path)}
-                      isActive={location.pathname === item.path}
-                      className="w-full min-h-[3.5rem] px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 hover:shadow-md border border-transparent hover:border-blue-200/50 group"
-                    >
-                      <item.icon className="h-5 w-5 flex-shrink-0 text-slate-600 group-hover:text-blue-600 transition-colors duration-200" />
-                      <div className="flex-1 text-left text-slate-700 group-hover:text-slate-900 font-medium leading-tight whitespace-normal">
-                        {item.title}
-                      </div>
-                    </SidebarMenuButton>
-                  )}
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+                    )}
+                  </SidebarMenuItem>
+                ))}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        ) : (
+          <div className="flex flex-col items-center space-y-4 px-2 pt-4">
+            {menuItems.map((item) => {
+              const isActive = location.pathname === item.path || location.pathname.startsWith(item.path + '/');
+              return (
+                <div key={item.title} className="relative group w-full">
+                  <button
+                    onClick={() => navigate(item.path)}
+                    className={`flex items-center justify-center h-14 w-full rounded-xl ${
+                      isActive 
+                        ? "bg-gradient-to-r from-blue-100 to-indigo-100 text-blue-700 shadow-md border border-blue-200" 
+                        : "bg-white shadow-sm border border-slate-100 text-slate-600 hover:bg-blue-50 hover:text-blue-600 hover:shadow-md"
+                    } transition-all duration-200`}
+                  >
+                    <item.icon className="h-5 w-5" />
+                    {isActive && <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-1 h-8 bg-blue-600 rounded-r-full"></div>}
+                  </button>
+                  <div className="absolute left-full ml-2 px-3 py-1.5 bg-white shadow-lg rounded-md text-sm font-medium text-slate-700 whitespace-nowrap opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-20">
+                    {item.title}
+                    {item.subItems && (
+                      <span className="ml-1.5 text-xs text-slate-400">({item.subItems.length})</span>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </SidebarContent>
     </Sidebar>
   );
