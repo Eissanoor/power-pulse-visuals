@@ -25,9 +25,9 @@ const App = () => (
           <div className="min-h-screen flex w-full">
             <AppSidebar />
             <SidebarInset>
-              <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4 bg-white/80 backdrop-blur-sm">
-                <SidebarTrigger className="h-8 w-8 hover:bg-blue-50 hover:text-blue-600 transition-colors duration-200" />
-                <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
+              <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4 bg-white shadow-sm">
+                <SidebarTrigger className="h-10 w-10 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center" />
+                <div className="flex items-center gap-2 text-lg font-semibold text-slate-700">
                   <span>Advanced Assets Monitoring</span>
                 </div>
               </header>
