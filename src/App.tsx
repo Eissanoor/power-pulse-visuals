@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import { SidebarInset } from "@/components/ui/sidebar";
+import { Menu } from "lucide-react";
 import Index from "./pages/Index";
 import SwitchgearPage from "./pages/SwitchgearPage";
 import PowerCablePage from "./pages/PowerCablePage";
@@ -26,9 +27,19 @@ const App = () => (
             <AppSidebar />
             <SidebarInset>
               <header className="flex h-16 shrink-0 items-center gap-4 border-b px-4 bg-white shadow-sm">
-                <SidebarTrigger className="h-12 w-12 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center border-2 border-blue-200 hover:border-blue-300" />
-                <div className="flex items-center gap-2 text-lg font-semibold text-slate-700">
-                  <span>Advanced Assets Monitoring</span>
+                <SidebarTrigger className="h-12 w-12 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center border-2 border-blue-200 hover:border-blue-300">
+                  <Menu className="h-6 w-6" />
+                </SidebarTrigger>
+                <div className="flex items-center gap-3">
+                  <div className="h-10 w-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-md">
+                    <svg className="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="text-lg font-semibold text-slate-700">Advanced Assets Monitoring</div>
+                    <div className="text-sm text-slate-500">Powered by AI Intelligence</div>
+                  </div>
                 </div>
               </header>
               <main className="flex-1">
