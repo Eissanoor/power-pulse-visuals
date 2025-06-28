@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Sidebar,
@@ -31,7 +31,6 @@ import {
   Menu,
   X
 } from 'lucide-react';
-import { SidebarStateContext } from '@/App';
 
 const menuItems = [
   {
@@ -204,7 +203,7 @@ export function AppSidebar() {
   const location = useLocation();
   const navigate = useNavigate();
   const [expandedItems, setExpandedItems] = useState<string[]>([]);
-  const { isOpen, setIsOpen } = useContext(SidebarStateContext);
+  const [isOpen, setIsOpen] = useState<boolean>(true);
 
   const toggleExpanded = (title: string) => {
     setExpandedItems(prev => 
@@ -221,7 +220,7 @@ export function AppSidebar() {
   };
 
   return (
-    <Sidebar className={`transition-all duration-300 ${isOpen ? "w-80" : "w-24"} border-r border-slate-200 fixed h-full z-10`}>
+    <Sidebar className={`transition-all duration-300 ${isOpen ? "w-96" : "w-24"} border-r border-slate-200`}>
       <div className="absolute right-0 top-6 transform translate-x-1/2 z-10">
         <button 
           onClick={toggleSidebar}
