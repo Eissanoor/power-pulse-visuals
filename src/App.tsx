@@ -11,6 +11,11 @@ import Index from "./pages/Index";
 import SwitchgearPage from "./pages/SwitchgearPage";
 import PowerCablePage from "./pages/PowerCablePage";
 import RotatingMachinePage from "./pages/RotatingMachinePage";
+import TemperatureHumidityPage from "./pages/TemperatureHumidityPage";
+import VibrationPage from "./pages/VibrationPage";
+import GasLeakPage from "./pages/GasLeakPage";
+import MotionDetectionPage from "./pages/MotionDetectionPage";
+import SoilMoisturePage from "./pages/SoilMoisturePage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +35,11 @@ const App = () => (
                 <Route path="/switchgear" element={<SwitchgearPage />} />
                 <Route path="/power-cable" element={<PowerCablePage />} />
                 <Route path="/rotating-machine" element={<RotatingMachinePage />} />
+                <Route path="/available-sensor/temperature-humidity" element={<TemperatureHumidityPage />} />
+                <Route path="/available-sensor/vibrations-sensor" element={<VibrationPage />} />
+                <Route path="/available-sensor/gas-leak" element={<GasLeakPage />} />
+                <Route path="/available-sensor/motion-detection" element={<MotionDetectionPage />} />
+                <Route path="/available-sensor/soil-moisture" element={<SoilMoisturePage />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </SidebarInset>
