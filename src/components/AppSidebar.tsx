@@ -29,7 +29,8 @@ import {
   Power,
   Radio,
   Menu,
-  X
+  X,
+  Gauge
 } from 'lucide-react';
 
 const menuItems = [
@@ -196,6 +197,22 @@ const menuItems = [
     title: 'Rotating Machine',
     path: '/rotating-machine',
     icon: Cog,
+  },
+  {
+    title: 'Available Sensor',
+    path: '/available-sensor',
+    icon: Gauge,
+    subItems: [
+      { title: 'temperature & Humidity', path: '/available-sensor/temperature-humidity' },
+      { title: 'ESP32-cam', path: '/available-sensor/esp32-cam' },
+      { title: 'Gas leak', path: '/available-sensor/gas-leak' },
+      { title: 'Vibrations Sensor', path: '/available-sensor/vibrations-sensor' },
+      { title: 'fuel level', path: '/available-sensor/fuel-level' },
+      { title: 'buzzer', path: '/available-sensor/buzzer' },
+      { title: 'motion Detection', path: '/available-sensor/motion-detection' },
+      { title: 'Soil moisture', path: '/available-sensor/soil-moisture' },
+      { title: 'Rely', path: '/available-sensor/rely' },
+    ],
   },
 ];
 
