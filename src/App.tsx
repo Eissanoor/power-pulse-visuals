@@ -16,6 +16,7 @@ import VibrationPage from "./pages/VibrationPage";
 import GasLeakPage from "./pages/GasLeakPage";
 import MotionDetectionPage from "./pages/MotionDetectionPage";
 import SoilMoisturePage from "./pages/SoilMoisturePage";
+import NPKSensorPage from "./pages/NPKSensorPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -40,6 +41,7 @@ const App = () => (
                 <Route path="/available-sensor/gas-leak" element={<GasLeakPage />} />
                 <Route path="/available-sensor/motion-detection" element={<MotionDetectionPage />} />
                 <Route path="/available-sensor/soil-moisture" element={<SoilMoisturePage />} />
+                <Route path="/available-sensor/npk-sensor" element={<NPKSensorPage />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </SidebarInset>

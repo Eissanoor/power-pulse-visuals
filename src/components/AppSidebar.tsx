@@ -199,19 +199,26 @@ const menuItems = [
     icon: Cog,
   },
   {
-    title: 'Available Sensor',
-    path: '/available-sensor',
+    title: 'My ioT Devices',
+    path: '/my-iot-devices',
     icon: Gauge,
     subItems: [
-      { title: 'temperature & Humidity', path: '/available-sensor/temperature-humidity' },
-      { title: 'ESP32-cam', path: '/available-sensor/esp32-cam' },
-      { title: 'Gas leak', path: '/available-sensor/gas-leak' },
-      { title: 'Vibrations Sensor', path: '/available-sensor/vibrations-sensor' },
-      { title: 'fuel level', path: '/available-sensor/fuel-level' },
-      { title: 'buzzer', path: '/available-sensor/buzzer' },
-      { title: 'motion Detection', path: '/available-sensor/motion-detection' },
-      { title: 'Soil moisture', path: '/available-sensor/soil-moisture' },
-      { title: 'Rely', path: '/available-sensor/rely' },
+      { 
+        title: 'Industrial Equipment\'s', 
+        path: '/my-iot-devices/industrial-equipment',
+        subItems: [
+          { title: 'Gas Leak', path: '/available-sensor/gas-leak' },
+          { title: 'Temperature & Humidity', path: '/available-sensor/temperature-humidity' },
+        ]
+      },
+      { 
+        title: 'Smart Agriculture', 
+        path: '/my-iot-devices/smart-agriculture',
+        subItems: [
+          { title: 'Soil Moisture', path: '/available-sensor/soil-moisture' },
+          { title: 'NPK Sensor', path: '/available-sensor/npk-sensor' },
+        ]
+      },
     ],
   },
 ];
@@ -300,15 +307,57 @@ export function AppSidebar() {
                           <SidebarMenuSub className="mt-3 ml-2 space-y-1 border-l-2 border-blue-100 pl-3 animate-in slide-in-from-top-2 duration-300">
                             {item.subItems.map((subItem) => (
                               <SidebarMenuSubItem key={subItem.title}>
-                                <SidebarMenuSubButton
-                                  onClick={() => navigate(subItem.path)}
-                                  isActive={location.pathname === subItem.path}
-                                  className="min-h-[2.5rem] px-3 py-2 rounded-lg text-sm transition-all duration-200 hover:bg-blue-50 hover:shadow-sm border border-transparent hover:border-blue-100 w-full text-left flex items-center"
-                                >
-                                  <div className="flex-1 text-slate-600 hover:text-slate-900 leading-tight font-medium whitespace-normal">
-                                    {subItem.title}
-                                  </div>
-                                </SidebarMenuSubButton>
+                                {subItem.subItems ? (
+                                  <>
+                                    <SidebarMenuSubButton
+                                      onClick={() => {
+                                        toggleExpanded(subItem.title);
+                                        navigate(subItem.path);
+                                      }}
+                                      isActive={location.pathname === subItem.path || location.pathname.startsWith(subItem.path + '/')}
+                                      className="min-h-[2.5rem] px-3 py-2 rounded-lg text-sm transition-all duration-200 hover:bg-blue-50 hover:shadow-sm border border-transparent hover:border-blue-100 w-full text-left flex items-center"
+                                    >
+                                      <div className="flex-1 text-slate-600 hover:text-slate-900 leading-tight font-medium whitespace-normal">
+                                        {subItem.title}
+                                      </div>
+                                      {isExpanded(subItem.title) ? (
+                                        <ChevronDown className="h-3 w-3 flex-shrink-0 transition-all duration-300 text-slate-500" />
+                                      ) : (
+                                        <ChevronRight className="h-3 w-3 flex-shrink-0 transition-all duration-300 text-slate-500" />
+                                      )}
+                                    </SidebarMenuSubButton>
+                                    {isExpanded(subItem.title) && (
+                                      <div className="mt-2 ml-4 space-y-1 border-l border-blue-100 pl-3">
+                                        {subItem.subItems.map((subSubItem) => (
+                                          <div key={subSubItem.title}>
+                                            <button
+                                              onClick={() => navigate(subSubItem.path)}
+                                              className={`min-h-[2rem] px-3 py-1.5 rounded-md text-xs transition-all duration-200 hover:bg-blue-50 border border-transparent hover:border-blue-100 w-full text-left flex items-center ${
+                                                location.pathname === subSubItem.path 
+                                                  ? "bg-blue-100 text-blue-900 border-blue-200 font-medium" 
+                                                  : "text-slate-600 hover:text-slate-900"
+                                              }`}
+                                            >
+                                              <div className="flex-1 leading-tight whitespace-normal">
+                                                {subSubItem.title}
+                                              </div>
+                                            </button>
+                                          </div>
+                                        ))}
+                                      </div>
+                                    )}
+                                  </>
+                                ) : (
+                                  <SidebarMenuSubButton
+                                    onClick={() => navigate(subItem.path)}
+                                    isActive={location.pathname === subItem.path}
+                                    className="min-h-[2.5rem] px-3 py-2 rounded-lg text-sm transition-all duration-200 hover:bg-blue-50 hover:shadow-sm border border-transparent hover:border-blue-100 w-full text-left flex items-center"
+                                  >
+                                    <div className="flex-1 text-slate-600 hover:text-slate-900 leading-tight font-medium whitespace-normal">
+                                      {subItem.title}
+                                    </div>
+                                  </SidebarMenuSubButton>
+                                )}
                               </SidebarMenuSubItem>
                             ))}
                           </SidebarMenuSub>
