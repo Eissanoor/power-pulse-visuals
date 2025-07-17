@@ -30,20 +30,22 @@ const App = () => (
         <SidebarProvider>
           <div className="min-h-screen flex w-full">
             <AppSidebar />
-            <SidebarInset>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/switchgear" element={<SwitchgearPage />} />
-                <Route path="/power-cable" element={<PowerCablePage />} />
-                <Route path="/rotating-machine" element={<RotatingMachinePage />} />
-                <Route path="/available-sensor/temperature-humidity" element={<TemperatureHumidityPage />} />
-                <Route path="/available-sensor/vibrations-sensor" element={<VibrationPage />} />
-                <Route path="/available-sensor/gas-leak" element={<GasLeakPage />} />
-                <Route path="/available-sensor/motion-detection" element={<MotionDetectionPage />} />
-                <Route path="/available-sensor/soil-moisture" element={<SoilMoisturePage />} />
-                <Route path="/available-sensor/npk-sensor" element={<NPKSensorPage />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
+            <SidebarInset className="flex-1 w-full overflow-hidden">
+              <div className="w-full h-full">
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/switchgear" element={<SwitchgearPage />} />
+                  <Route path="/power-cable" element={<PowerCablePage />} />
+                  <Route path="/rotating-machine" element={<RotatingMachinePage />} />
+                  <Route path="/available-sensor/temperature-humidity" element={<TemperatureHumidityPage />} />
+                  <Route path="/available-sensor/vibrations-sensor" element={<VibrationPage />} />
+                  <Route path="/available-sensor/gas-leak" element={<GasLeakPage />} />
+                  <Route path="/available-sensor/motion-detection" element={<MotionDetectionPage />} />
+                  <Route path="/available-sensor/soil-moisture" element={<SoilMoisturePage />} />
+                  <Route path="/available-sensor/npk-sensor" element={<NPKSensorPage />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </div>
             </SidebarInset>
           </div>
         </SidebarProvider>
