@@ -17,6 +17,9 @@ import GasLeakPage from "./pages/GasLeakPage";
 import MotionDetectionPage from "./pages/MotionDetectionPage";
 import SoilMoisturePage from "./pages/SoilMoisturePage";
 import NPKSensorPage from "./pages/NPKSensorPage";
+import ESP32CamPage from "./pages/ESP32CamPage";
+import FuelLevelPage from "./pages/FuelLevelPage";
+import BuzzerPage from "./pages/BuzzerPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -41,6 +44,9 @@ const App = () => (
                   <Route path="/available-sensor/vibrations-sensor" element={<VibrationPage />} />
                   <Route path="/available-sensor/gas-leak" element={<GasLeakPage />} />
                   <Route path="/available-sensor/motion-detection" element={<MotionDetectionPage />} />
+                  <Route path="/available-sensor/esp32-cam" element={<ESP32CamPage />} />
+                  <Route path="/available-sensor/fuel-level" element={<FuelLevelPage />} />
+                  <Route path="/available-sensor/buzzer" element={<BuzzerPage />} />
                   <Route path="/available-sensor/soil-moisture" element={<SoilMoisturePage />} />
                   <Route path="/available-sensor/npk-sensor" element={<NPKSensorPage />} />
                   <Route path="*" element={<NotFound />} />
