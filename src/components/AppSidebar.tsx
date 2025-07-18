@@ -209,6 +209,8 @@ const menuItems = [
         subItems: [
           { title: 'Gas Leak', path: '/available-sensor/gas-leak' },
           { title: 'Temperature & Humidity', path: '/available-sensor/temperature-humidity' },
+          { title: 'Vibrations Sensor', path: '/available-sensor/vibrations-sensor' },
+          { title: 'Motion Detection', path: '/available-sensor/motion-detection' },
         ]
       },
       { 
