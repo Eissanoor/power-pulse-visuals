@@ -211,6 +211,9 @@ const menuItems = [
           { title: 'Temperature & Humidity', path: '/available-sensor/temperature-humidity' },
           { title: 'Vibrations Sensor', path: '/available-sensor/vibrations-sensor' },
           { title: 'Motion Detection', path: '/available-sensor/motion-detection' },
+          { title: 'ESP32-cam', path: '/available-sensor/esp32-cam' },
+          { title: 'Fuel Level', path: '/available-sensor/fuel-level' },
+          { title: 'Buzzer', path: '/available-sensor/buzzer' },
         ]
       },
       { 
