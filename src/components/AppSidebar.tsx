@@ -245,7 +245,7 @@ export function AppSidebar() {
   const isExpanded = (title: string) => expandedItems.includes(title);
 
   return (
-    <Sidebar collapsible="icon" className="border-r border-sidebar-border">
+    <Sidebar collapsible="icon" className="border-r border-sidebar-border w-80 data-[state=collapsed]:w-16">
       <SidebarHeader className="p-4 border-b border-sidebar-border bg-gradient-to-r from-sidebar-background to-sidebar-accent">
         <div className="flex items-center gap-3">
           <div className="h-10 w-10 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-700 rounded-xl flex items-center justify-center shadow-lg ring-2 ring-blue-100 shrink-0">
