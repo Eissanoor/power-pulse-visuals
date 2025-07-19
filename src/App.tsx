@@ -30,7 +30,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <SidebarProvider>
+        <SidebarProvider defaultOpen={true} style={{ "--sidebar-width": "22rem", "--sidebar-width-mobile": "18rem" } as React.CSSProperties}>
           <div className="min-h-screen flex w-full">
             <AppSidebar />
             <SidebarInset className="flex-1 w-full overflow-hidden">
