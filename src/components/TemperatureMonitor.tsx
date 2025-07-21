@@ -19,7 +19,7 @@ export const TemperatureMonitor = () => {
 
   const fetchSensorData = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/sensor-data');
+      const response = await fetch('http://localhost:3000/api/temperature');
       const data = await response.json();
       
       if (data && data.data && Array.isArray(data.data)) {
